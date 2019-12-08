@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EFCorePratica.Data;
+using System;
 
 namespace EFCorePratica
 {
@@ -6,7 +7,13 @@ namespace EFCorePratica
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            using (var db = new LivroContext())
+            {
+
+                db.Database.EnsureCreated();
+                db.Livros.Add(new Model.Livro {  Autor = "PauloPitte", AnoPublicacao = 2019, Titulo = "Paulo" });
+                db.SaveChanges();
+            }
         }
     }
 }

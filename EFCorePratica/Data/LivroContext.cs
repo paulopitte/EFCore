@@ -12,7 +12,9 @@ namespace EFCorePratica.Data
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFCore.pratica;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EFCore.pratica;Trusted_Connection=True;",
+                option => option.MaxBatchSize(2)); // ==> A CADA CHAMADA AO BANCO SERÁ EXECUTADO  ATÉ 2 OPERAÇÕES POR VEZ(EM LOTE)
+           
         }
 
 
